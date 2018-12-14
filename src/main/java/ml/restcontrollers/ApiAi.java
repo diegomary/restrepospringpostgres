@@ -1,6 +1,7 @@
 package ml.restcontrollers;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.Collections;
 import java.util.Comparator;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.mongodb.DBObject;
+
+import ml.checkout.Category;
 import ml.checkout.Product;
+import ml.repository.CategoryRestRepository;
 import ml.repository.ProductRepository;
 import ml.repository.ProductRestRepository;
 @RestController
@@ -25,6 +29,7 @@ public class ApiAi {
 private HttpServletRequest contextRequest;
 @Autowired private MongoTemplate mongoTemplate;
 @Autowired private ProductRestRepository prodRepo;
+@Autowired private CategoryRestRepository catRepo;
 	
 	@RequestMapping(value="/first", method=RequestMethod.GET)
 	@CrossOrigin(origins = {"*"},methods = { RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.OPTIONS},allowedHeaders= {"content-type","custom-header"})
@@ -93,6 +98,25 @@ private HttpServletRequest contextRequest;
 		//http://localhost:8080/getdatapaged?page=1&size=2&sort=sku
 	    	
 	}
+	
+	
+	@RequestMapping(value="/getdatafull", method=RequestMethod.GET)
+	public @ResponseBody Iterable<Product>  testData11() {		
+		
+		return prodRepo.findAll();		
+		
+	}
+	
+	
+	
+	@RequestMapping(value="/getdatafullcat", method=RequestMethod.GET)
+	public @ResponseBody Iterable<Category>  testData112() {		
+		
+		return catRepo.findAll();		
+		
+	}
+	
+	
 	
  
 

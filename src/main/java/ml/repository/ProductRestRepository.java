@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import ml.checkout.Product;
 
-@RepositoryRestResource(collectionResourceRel = "product", path = "product")
+@RepositoryRestResource(collectionResourceRel = "product", path = "product",exported=false)
 public interface ProductRestRepository extends PagingAndSortingRepository<Product, Long> {
 	
 	List<Product> findBySku(@Param("sku") String sku);
