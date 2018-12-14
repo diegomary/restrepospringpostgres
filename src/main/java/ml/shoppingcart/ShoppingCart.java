@@ -8,15 +8,14 @@ import ml.interfaces.IShoppingCart;
 
 public class ShoppingCart implements IShoppingCart {	
 	
-	
 	public List<CartItem> items;	
-	public Date creationDate;
-	
+	public Date creationDate;	
 	
 	public ShoppingCart(){
 		
 		 this.items = new ArrayList<CartItem>();
-	     this.creationDate = new Date();
+	     this.creationDate = new Date(); 
+	     IShoppingCart.super.PrintSignature();
 		
 	}
 	

@@ -12,7 +12,7 @@ import ml.shoppingcart.ShoppingCart;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MlApplicationTests {
+public class ShoppingCartTests {
 
 	@Test
 	public void contextLoads() {}
@@ -139,8 +139,7 @@ public class MlApplicationTests {
 		cinew.setProduct(new Product("skuefg",123.40 , false, 9 , 1200));
 		sc.AddItem(ci);
 		sc.AddItem(ci1);
-		sc.AddItem(cinew);
-		
+		sc.AddItem(cinew);		
 		Date creationDate = sc.getDate();
 		//When
 		sc.EmptyCart();
@@ -191,8 +190,7 @@ public class MlApplicationTests {
 		ci1.setQuantity(1);		
 		ci1.setProduct(new Product("skucde",2000.40 , false, 3 , 3000));		
 		sc.AddItem(ci);
-		sc.AddItem(ci1);
-		
+		sc.AddItem(ci1);		
 		//When
 		sc.DecreaseQuantityByOne("skuabc");
 		assertEquals(sc.items.size(), 1);			

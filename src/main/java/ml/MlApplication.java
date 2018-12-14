@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ml.checkout.ProductScanner;
 import ml.checkout.ProductScanner1;
 import ml.interfaces.IShoppingCart;
+import ml.shoppingcart.CartItem;
+import ml.shoppingcart.ShoppingCart;
 import ml.testpurchases.TestPurchase1;
 import ml.testpurchases.TestPurchase2;
 import ml.testpurchases.TestPurchase3;
@@ -19,7 +21,7 @@ public class MlApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MlApplication.class, args);
 				
-		  System.out.println("Solution 1: TEST CASES");
+	/*	  System.out.println("Solution 1: TEST CASES");
 	        
 	        //Should return a Grand Total of 5.0 USing Solution 1
 	        ProductScanner scanner = new ProductScanner(TestPurchase1.Purchase());
@@ -63,7 +65,12 @@ public class MlApplication {
 	        scanner1 = new ProductScanner1(TestPurchase5.Purchase());
 	        System.out.println("Solution 1: Test 5 Grand Total : "+ scanner1.GrandTotal());
 		
-		System.out.println(IShoppingCart.PrintSignature());
+		System.out.println(IShoppingCart.PrintSignature());*/
+		
+		
+
+		Helper hp = new Helper(new ShoppingCart());
+		
 		
 		
 		
