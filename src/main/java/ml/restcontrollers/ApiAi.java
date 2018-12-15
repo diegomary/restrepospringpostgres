@@ -24,6 +24,7 @@ import ml.repository.CategoryRestRepository;
 import ml.repository.ProductRepository;
 import ml.repository.ProductRestRepository;
 @RestController
+
 public class ApiAi {	
 @Autowired
 private HttpServletRequest contextRequest;
@@ -83,7 +84,7 @@ private HttpServletRequest contextRequest;
 	
 	@RequestMapping(value="/getdata", method=RequestMethod.GET)
 	public @ResponseBody Iterable<Product>  testData() {		
-		Product p = new Product("sku123", 0.5 ,true, 3, 1.30);
+		Product p = new Product("sku123","laptop", 0.5 ,true, 3, 1.30);
 		p.setName("The best product in the world");
 		prodRepo.save(p);
 		return prodRepo.findAll();

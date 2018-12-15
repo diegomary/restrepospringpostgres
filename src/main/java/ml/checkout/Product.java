@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -16,11 +17,12 @@ import javax.persistence.Table;
 public class Product {
     
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	
 	private  String  sku;
+	@Size(min = 3, max = 20)
 	private String name;
     private  double unitPrice;   
     private  boolean  isOnOffer;
@@ -33,12 +35,13 @@ public class Product {
     public Product() {};
    
     
-    public Product(String _sku, double  _unitPrice , boolean _isOnOffer, int  _quantityOnOffer , double _offerPrice){
-        this.sku = _sku;
-        this.unitPrice = _unitPrice;       
-        this.isOnOffer = _isOnOffer;
-        this.quantityOnOffer = _quantityOnOffer;
-        this.offerPrice = _offerPrice;
+    public Product(String sku,String name, double  unitPrice , boolean isOnOffer, int  quantityOnOffer , double offerPrice){
+        this.sku = sku;
+        this.name = name;
+        this.unitPrice = unitPrice;       
+        this.isOnOffer = isOnOffer;
+        this.quantityOnOffer = quantityOnOffer;
+        this.offerPrice = offerPrice;
     }         
      
     public String getSku() {

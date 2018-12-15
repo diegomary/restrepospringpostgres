@@ -1,21 +1,40 @@
 package ml;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import java.util.Date;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import ml.checkout.Product;
 import ml.shoppingcart.CartItem;
 import ml.shoppingcart.ShoppingCart;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShoppingCartTests {
 
-	@Test
-	public void contextLoads() {}
+private Product testProduct1;
+private Product testProduct2;
+private Product testProduct3;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		testProduct1 = new Product("skuabc","Super Laptop",1300.40 , false, 5 , 4000);
+		testProduct2 = new Product("skucde","Iphone 10 x",2000.40 , false, 3 , 3000);
+		testProduct3 = new Product("skuefg","Micro Usb device",123.40 , false, 9 , 1200);
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		
+		testProduct1 = null; 
+		testProduct2 = null;
+		testProduct3 = null;
+		
+	}
+	
 	
 	@Test
 	// When the shopping cart is empty adding 2 items of the same product should result in a shopping cart with only 1 item
@@ -25,7 +44,7 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));
+		ci.setProduct(testProduct1);
 		// When
 		sc.AddItem(ci);
 		sc.AddItem(ci);	
@@ -41,15 +60,15 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));
+		ci.setProduct(testProduct1);
 		CartItem ci1 = new CartItem();		
 		ci1.setQuantity(1);		
-		ci1.setProduct(new Product("skucde",2000.40 , false, 3 , 3000));
+		ci1.setProduct(testProduct2);
 		sc.AddItem(ci);
 		sc.AddItem(ci1);		
 		CartItem cinew = new CartItem();		
 		cinew.setQuantity(1);		
-		cinew.setProduct(new Product("skuefg",123.40 , false, 9 , 1200));		
+		cinew.setProduct(testProduct3);		
 		// When
 		sc.AddItem(cinew);
 		sc.AddItem(cinew);	
@@ -66,10 +85,10 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));
+		ci.setProduct(testProduct1);
 		CartItem ci1 = new CartItem();		
 		ci1.setQuantity(1);		
-		ci1.setProduct(new Product("skucde",2000.40 , false, 3 , 3000));
+		ci1.setProduct(testProduct2);
 		sc.AddItem(ci);
 		sc.AddItem(ci1);
 		int sizeBefore = sc.items.size();
@@ -87,7 +106,7 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));
+		ci.setProduct(testProduct1);
 		// When
 		sc.AddItem(ci);
 		sc.SetItemQuantity("skuabc", 10);			
@@ -103,13 +122,13 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));		
+		ci.setProduct(testProduct1);		
 		CartItem ci1 = new CartItem();		
 		ci1.setQuantity(1);		
-		ci1.setProduct(new Product("skucde",2000.40 , false, 3 , 3000));		
+		ci1.setProduct(testProduct2);		
 		CartItem cinew = new CartItem();		
 		cinew.setQuantity(1);		
-		cinew.setProduct(new Product("skuefg",123.40 , false, 9 , 1200));
+		cinew.setProduct(testProduct3);
 		sc.AddItem(ci);
 		sc.AddItem(ci1);
 		sc.AddItem(cinew);		
@@ -130,13 +149,13 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));		
+		ci.setProduct(testProduct1);		
 		CartItem ci1 = new CartItem();		
 		ci1.setQuantity(1);		
-		ci1.setProduct(new Product("skucde",2000.40 , false, 3 , 3000));		
+		ci1.setProduct(testProduct2);		
 		CartItem cinew = new CartItem();		
 		cinew.setQuantity(1);		
-		cinew.setProduct(new Product("skuefg",123.40 , false, 9 , 1200));
+		cinew.setProduct(testProduct3);
 		sc.AddItem(ci);
 		sc.AddItem(ci1);
 		sc.AddItem(cinew);		
@@ -155,7 +174,7 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));		
+		ci.setProduct(testProduct1);		
 		sc.AddItem(ci);
 		int beforeQuantity = sc.items.get(0).getQuantity();
 		//When
@@ -170,7 +189,7 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));		
+		ci.setProduct(testProduct1);		
 		sc.AddItem(ci);
 		
 		//When
@@ -185,10 +204,10 @@ public class ShoppingCartTests {
 		ShoppingCart sc = new ShoppingCart();
 		CartItem ci = new CartItem();		
 		ci.setQuantity(1);		
-		ci.setProduct(new Product("skuabc",1300.40 , false, 5 , 4000));		
+		ci.setProduct(testProduct1);		
 		CartItem ci1 = new CartItem();		
 		ci1.setQuantity(1);		
-		ci1.setProduct(new Product("skucde",2000.40 , false, 3 , 3000));		
+		ci1.setProduct(testProduct2);		
 		sc.AddItem(ci);
 		sc.AddItem(ci1);		
 		//When
